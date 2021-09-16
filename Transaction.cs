@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace supportbank
 {
     class Transaction
     {
@@ -13,5 +13,14 @@ namespace ConsoleApp1
         public string to;
         public string narrative;
         public decimal amount;
+
+        public Transaction(string date, string from, string to, string narrative, decimal amount)
+        {
+            this.date = date;
+            this.from = from;
+            this.to = to;
+            this.narrative = narrative;
+            this.amount = amount;
+        }
     }
 }
