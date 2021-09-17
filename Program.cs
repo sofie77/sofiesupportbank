@@ -39,8 +39,10 @@ namespace supportbank
                 //splitting by from and to and putting into neat variables
                 string fromName = splitline[1];
                 string toName = splitline[2];
+                //making new accounts for both
                 Account fromAccount = new Account(fromName);
                 Account toAccount = new Account(toName);
+                //finding the senders name and storing the unique ones in  fromaccount 
                 if (accounts.ContainsKey(fromName))
                 {
                     //if it already does it otherwise do the thing
@@ -49,6 +51,7 @@ namespace supportbank
                 {
                     accounts.Add(fromName, fromAccount);
                 }
+                //same but with toname adding to toaccount
                 if (accounts.ContainsKey(toName))
                 {
                     //if it already does it otherwise do the thing
@@ -63,13 +66,36 @@ namespace supportbank
                 // Remove amount from balance of fromAccount
                 accounts[fromName].Balance -= amount;
             }
+            //list all
+            // entry is everything entered in the above section- or I think so at least
+            Console.Write("list all or list account?:  ");
+            string choice= Console.ReadLine();
 
-            foreach (var entry in accounts)
+            if (choice == "list all")
             {
-                Console.WriteLine(entry.Value.Name + ": " + entry.Value.Balance);
-
+                foreach (var entry in accounts)
+                {
+                    Console.WriteLine(entry.Value.Name + " has " + entry.Value.Balance + " in the bank");
+                }
             }
-        
+            else if (choice == "list account")
+            {
+                Console.Write("what account?:  ");
+                var accountchoice = Console.ReadLine();
+
+                var account = accounts[accountchoice];
+                
+                   
+                Console.WriteLine(account.Name + " has " + account.Balance + " in the bank");
+
+           
+            }
+            else
+            {
+                Console.WriteLine("wrong, try again");
+            }
+
+
 
             // how long is the list of lines
             int length = transactions.Count;
@@ -83,8 +109,9 @@ namespace supportbank
             Console.WriteLine(transactions[1].amount);
             Console.WriteLine(transactions[2].amount);
 
-            // List all - start
+            // 
 
+            
             
             Console.Read();
 
